@@ -26,7 +26,7 @@ module Moribus
     # the lookup succeeds, we don't want the original #save to be executed.
     # But if +false+ is returned by the callback, it will also be returned
     # by the #save method, wrongly indicating the result of saving.
-    def save(*)
+    def save(**)
       @updated_as_aggregated = false
       run_callbacks(:save) do
         return (lookup_self_and_replace or super) if new_record?
@@ -47,8 +47,8 @@ module Moribus
     end
 
     # Bang version of #save.
-    def save!(*args)
-      save(*args) or raise_record_not_saved_error
+    def save!(**kwargs)
+      save(**kwargs) or raise_record_not_saved_error
     end
 
     # Raise "record not saved".

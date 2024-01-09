@@ -47,8 +47,7 @@ def MoribusSpecModel(column_definition = {})
               end
               options[:default] = 0 if name == :lock_version
               args = [type, name]
-              args << options unless options.empty?
-              t.send(*args)
+              t.send(*args, **options)
             end
           end
         end
