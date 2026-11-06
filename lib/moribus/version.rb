@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Moribus # :nodoc:
-  VERSION = "0.11.0" # :nodoc:
+  VERSION = "0.12.0" # :nodoc:
 end
