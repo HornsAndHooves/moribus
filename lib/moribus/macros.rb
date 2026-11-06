@@ -120,6 +120,7 @@ module Moribus
     def normalize_reflection(reflection, name)
       return reflection unless reflection.respond_to? :[]
 
+      # simplecov:disable unreachable on Rails >= 5, where reflections no longer respond to :[]
       if reflection.has_key?(name)
         # Rails 4.1
         reflection[name]
@@ -127,6 +128,7 @@ module Moribus
         # Rails 4.2
         reflection["#{name}"]
       end
+      # simplecov:enable
     end
     private :normalize_reflection
 

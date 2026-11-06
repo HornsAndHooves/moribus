@@ -36,6 +36,10 @@ and will be saved as a new record with new attribute values and the
 'is_current' column as 'true'. Thus, under the hood, new attributes
 will supersede old attributes, leaving the old record as historical.
 
+When using `acts_as_tracked by: :association`, parent foreign keys are resolved
+when needed, so the association may be declared before or after `acts_as_tracked`.
+Subclasses inherit the parent association configuration unless they override it.
+
 ## Macros, Associations and Combination
 
 Despite the fact that Moribus may be used by models on its own,
