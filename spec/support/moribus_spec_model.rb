@@ -10,7 +10,8 @@ module MoribusSpecModel
         end
       end
     end
-    ActiveSupport::Dependencies::Reference.clear!
+    # Classic autoloader removed in Rails 7+ (Zeitwerk-only); no-op there.
+    ActiveSupport::Dependencies::Reference.clear! if defined?(ActiveSupport::Dependencies::Reference)
   end
 end
 
