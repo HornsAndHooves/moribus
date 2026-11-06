@@ -15,6 +15,8 @@ module Moribus
   autoload :Extensions
 
   included do
+    class_attribute :tracked_parent_relations, instance_accessor: false
+
     include AliasAssociation
     include Extensions
     extend Macros
@@ -22,7 +24,10 @@ module Moribus
 
   # :nodoc:
   module ClassMethods
-    attr_reader :parent_relation_keys
+    # Resolve keys after associations are declared, without caching incomplete results.
+    def parent_relation_keys
+      get_parent_relation_keys(tracked_parent_relations)
+    end
 
     # Adds aggregated behavior to a model.
     def acts_as_aggregated(options = {})
@@ -50,7 +55,7 @@ module Moribus
       include TrackedBehavior
 
       @preceding_key_column = options[:preceding_key]
-      @parent_relation_keys = get_parent_relation_keys(options[:by])
+      self.tracked_parent_relations = options[:by]
     end
     private :acts_as_tracked
 
